@@ -37,7 +37,8 @@ namespace AgendaMedicaMvc
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<AgendaMedicaMvcContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("AgendaMedicaMvcContext")));
+                    options.UseMySql(Configuration.GetConnectionString("AgendaMedicaMvcContext"), builder =>
+                        builder.MigrationsAssembly("AgendaMedicaMvc")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
