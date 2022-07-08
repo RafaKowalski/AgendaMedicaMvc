@@ -14,10 +14,10 @@ namespace AgendaMedicaMvc.Data
         {
         }
 
-        public DbSet<AgendaMedicaMvc.Models.Medico> Medico { get; set; }
+        public DbSet<Medico> Medico { get; set; }
 
-        public DbSet<AgendaMedicaMvc.Models.Paciente> Paciente { get; set; }
+        public DbSet<Paciente> Paciente { get; set; }
 
-        public DbSet<AgendaMedicaMvc.Models.Agenda> Agenda { get; set; }
+        public DbSet<Agenda> Agenda { get; set; }
     }
 }

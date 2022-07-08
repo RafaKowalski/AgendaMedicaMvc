@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using AgendaMedicaMvc.Data;
+using AgendaMedicaMvc.Services;
 
 namespace AgendaMedicaMvc
 {
@@ -39,6 +40,8 @@ namespace AgendaMedicaMvc
             services.AddDbContext<AgendaMedicaMvcContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("AgendaMedicaMvcContext"), builder =>
                         builder.MigrationsAssembly("AgendaMedicaMvc")));
+
+            services.AddScoped<AgendaService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

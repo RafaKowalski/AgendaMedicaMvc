@@ -3,14 +3,16 @@ using System;
 using AgendaMedicaMvc.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AgendaMedicaMvc.Migrations
 {
     [DbContext(typeof(AgendaMedicaMvcContext))]
-    partial class AgendaMedicaMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20220708015842_ThirdMigrationAgenda")]
+    partial class ThirdMigrationAgenda
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,9 +26,17 @@ namespace AgendaMedicaMvc.Migrations
 
                     b.Property<DateTime>("Date");
 
+                    b.Property<int>("MedicoId");
+
+                    b.Property<int>("PacienteId");
+
                     b.Property<int>("StatusDaAgenda");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MedicoId");
+
+                    b.HasIndex("PacienteId");
 
                     b.ToTable("Agenda");
                 });
@@ -36,16 +46,12 @@ namespace AgendaMedicaMvc.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AgendaId");
-
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.Property<string>("Specialization");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AgendaId");
 
                     b.ToTable("Medico");
                 });
@@ -55,8 +61,6 @@ namespace AgendaMedicaMvc.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AgendaId");
-
                     b.Property<string>("Email");
 
                     b.Property<string>("Name");
@@ -65,23 +69,20 @@ namespace AgendaMedicaMvc.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AgendaId");
-
                     b.ToTable("Paciente");
                 });
 
-            modelBuilder.Entity("AgendaMedicaMvc.Models.Medico", b =>
+            modelBuilder.Entity("AgendaMedicaMvc.Models.Agenda", b =>
                 {
-                    b.HasOne("AgendaMedicaMvc.Models.Agenda")
-                        .WithMany("Medico")
-                        .HasForeignKey("AgendaId");
-                });
+                    b.HasOne("AgendaMedicaMvc.Models.Medico", "Medico")
+                        .WithMany()
+                        .HasForeignKey("MedicoId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity("AgendaMedicaMvc.Models.Paciente", b =>
-                {
-                    b.HasOne("AgendaMedicaMvc.Models.Agenda")
-                        .WithMany("Paciente")
-                        .HasForeignKey("AgendaId");
+                    b.HasOne("AgendaMedicaMvc.Models.Paciente", "Paciente")
+                        .WithMany()
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
