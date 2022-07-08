@@ -5,17 +5,18 @@ namespace AgendaMedicaMvc.Models
     public class Paciente
     {
         public int Id { get; set; }
+        [Display(Name = "Nome")]
         public string Name { get; set; }
         public string Email { get; set; }
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
-        public long Phone { get; set; }
+        [Display(Name = "Telefone")]
+        public int Phone { get; set; }
 
         public Paciente()
         {
         }
 
-        public Paciente(int id, string name, string email, long phone)
+        public Paciente(int id, string name, string email, int phone)
         {
             Id = id;
             Name = name;
