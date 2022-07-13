@@ -3,14 +3,16 @@ using System;
 using AgendaMedicaMvc.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AgendaMedicaMvc.Migrations
 {
     [DbContext(typeof(AgendaMedicaMvcContext))]
-    partial class AgendaMedicaMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20220712233545_AgendaForeignKey")]
+    partial class AgendaForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,6 +29,8 @@ namespace AgendaMedicaMvc.Migrations
                     b.Property<int>("MedicoId");
 
                     b.Property<int>("PacienteId");
+
+                    b.Property<int>("StatusDaAgenda");
 
                     b.HasKey("Id");
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using AgendaMedicaMvc.Data;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System;
 
 namespace AgendaMedicaMvc.Services
 {
@@ -15,25 +17,15 @@ namespace AgendaMedicaMvc.Services
             _context = context;
         }
 
-        public Task<List<Medico>> FindAllMedico()
+        public Task<List<Agenda>> FindAllAgenda()
         {
-            return _context.Medico.ToListAsync();
+            return _context.Agenda.OrderBy(x => x.Date).ToListAsync();
         }
-        public Task<List<Paciente>> FindAllPaciente()
+        public void InsertAgendaAsync(Agenda objAgenda)
         {
-            return _context.Paciente.ToListAsync();
-        }
-
-        public async Task InsertMedicoAsync(Medico objMedico)
-        {
-            _context.Add(objMedico);
+            _context.Add(objAgenda);
             _context.SaveChangesAsync();
         }
 
-        public async Task InsertPacienteAsync(Paciente objPaciente)
-        {
-            _context.Add(objPaciente);
-            _context.SaveChanges();
-        }
     }
 }

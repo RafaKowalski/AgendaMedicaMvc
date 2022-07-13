@@ -7,16 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AgendaMedicaMvc.Data;
 using AgendaMedicaMvc.Models;
+using AgendaMedicaMvc.Models.ViewModels;
+using AgendaMedicaMvc.Services;
 
 namespace AgendaMedicaMvc.Controllers
 {
     public class AgendaController : Controller
     {
         private readonly AgendaMedicaMvcContext _context;
+        private readonly AgendaService _agendaService;
+        private readonly MedicoService _medicoService;
+        private readonly PacienteService _pacienteService;
 
-        public AgendaController(AgendaMedicaMvcContext context)
+        public AgendaController(AgendaMedicaMvcContext context, AgendaService agendaService, MedicoService medicoService, PacienteService pacienteService)
         {
             _context = context;
+            _agendaService = agendaService;
+            _medicoService = medicoService;
+            _pacienteService = pacienteService;
         }
 
         // GET: Agenda
@@ -46,6 +54,9 @@ namespace AgendaMedicaMvc.Controllers
         // GET: Agenda/Create
         public IActionResult Create()
         {
+            //var Medicos = _medicoService.FindAllMedico();
+            //var Pacientes = _pacienteService.FindAllPaciente();
+            //var viewModel = new AgendaViewModel { Medicos = (ICollection<Medico>)Medicos, Pacientes = (ICollection<Paciente>)Pacientes };
             return View();
         }
 

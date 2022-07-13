@@ -9,25 +9,23 @@ namespace AgendaMedicaMvc.Models
     {
         public int Id { get; set; }
         [Required]
-        [DisplayFormat(DataFormatString ="{0:f")]
         public DateTime Date { get; set; }
         public ICollection<Medico> Medico { get; set; }
         public ICollection<Paciente> Paciente { get; set; }
-        public StatusDaAgenda StatusDaAgenda { get; set; }
-        //public int MedicoId { get; set; }
-        //public int PacienteId { get; set; }
+        //public StatusDaAgenda StatusDaAgenda { get; set; }
+        public int MedicoId { get; set; }
+        public int PacienteId { get; set; }
 
         public Agenda()
         {
         }
 
-        public Agenda(int id, DateTime date, ICollection<Medico> medico, ICollection<Paciente> paciente, StatusDaAgenda statusDaAgenda)
+        public Agenda(int id, DateTime date, ICollection<Medico> medico, ICollection<Paciente> paciente)
         {
             Id = id;
             Date = date;
             Medico = medico;
             Paciente = paciente;
-            StatusDaAgenda = statusDaAgenda;
         }
     }
 }
