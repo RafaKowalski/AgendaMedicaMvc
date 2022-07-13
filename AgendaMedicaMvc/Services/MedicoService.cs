@@ -16,9 +16,9 @@ namespace AgendaMedicaMvc.Services
             _context = context;
         }
 
-        public Task<List<Medico>> FindAllMedico()
+        public List<Medico> FindAllMedico()
         {
-            return _context.Medico.OrderBy(x => x.Name).ToListAsync();
+            return _context.Medico.OrderBy(x => x.Name).ToList();
         }
         public void InsertMedicoAsync(Medico objMedico)
         {

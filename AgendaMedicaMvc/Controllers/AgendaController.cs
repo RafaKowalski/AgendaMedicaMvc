@@ -54,10 +54,10 @@ namespace AgendaMedicaMvc.Controllers
         // GET: Agenda/Create
         public IActionResult Create()
         {
-            var Medicos = _medicoService.FindAllMedico();
-            var Pacientes = _pacienteService.FindAllPaciente();
-            //var viewModel = new AgendaViewModel((ICollection<Medico>)Medicos, (ICollection<Paciente>)Pacientes);
-            return View();
+            List<Medico> Medicos = _medicoService.FindAllMedico();
+            List<Paciente> Pacientes = _pacienteService.FindAllPaciente();
+            var viewModel = new AgendaViewModel(Medicos, Pacientes);
+            return View(viewModel);
         }
 
         // POST: Agenda/Create

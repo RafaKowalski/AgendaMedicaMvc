@@ -15,9 +15,9 @@ namespace AgendaMedicaMvc.Services
         {
             _context = context;
         }
-        public Task<List<Paciente>> FindAllPaciente()
+        public List<Paciente> FindAllPaciente()
         {
-            return _context.Paciente.OrderBy(x => x.Name).ToListAsync();
+            return _context.Paciente.OrderBy(x => x.Name).ToList();
         }
         public void InsertPacienteAsync(Paciente objPaciente)
         {

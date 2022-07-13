@@ -13,19 +13,17 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Agenda.Medico" class="control-label"></label>
-                <input asp-for="Agenda.Medico" class="form-control" />
-                <span asp-validation-for="Agenda.Medico" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Agenda.Paciente" class="control-label"></label>
-                <input asp-for="Agenda.Paciente" class="form-control" />
-                <span asp-validation-for="Agenda.Paciente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Agenda.Date" class="control-label"></label>
                 <input asp-for="Agenda.Date" class="form-control" />
                 <span asp-validation-for="Agenda.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Agenda.MedicoId" class="control-label"></label>
+                <select asp-for="Agenda.MedicoId" asp-items="@(new SelectList(Model.Medicos,"Id","Name"))" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Agenda.PacienteId" class="control-label"></label>
+                <select asp-for="Agenda.PacienteId" asp-items="@(new SelectList(Model.Pacientes,"Id","Name"))" class="form-control"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
