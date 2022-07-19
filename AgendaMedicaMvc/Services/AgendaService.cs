@@ -19,7 +19,7 @@ namespace AgendaMedicaMvc.Services
 
         public Task<List<Agenda>> FindAllAgenda()
         {
-            return _context.Agenda.OrderBy(x => x.Date).ToListAsync();
+            return _context.Agenda.Include(x => x.Medico).Include(x => x.Paciente).OrderBy(x => x.Date).ToListAsync();
         }
         public void InsertAgendaAsync(Agenda objAgenda)
         {

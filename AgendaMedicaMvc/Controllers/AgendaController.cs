@@ -65,7 +65,7 @@ namespace AgendaMedicaMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,StatusDaAgenda")] Agenda agenda)
+        public async Task<IActionResult> Create(Agenda agenda)
         {
             if (ModelState.IsValid)
             {
