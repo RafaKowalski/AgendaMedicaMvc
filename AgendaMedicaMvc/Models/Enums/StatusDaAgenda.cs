@@ -5,6 +5,5 @@
         AgendaConfirmada = 1,
         AgendaConcluida = 2,
         AgendaCancelada = 3,
-
     }
 }
