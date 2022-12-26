@@ -137,7 +137,7 @@ namespace AgendaMedicaMvc.Controllers
                 return NotFound();
             }
 
-            var agenda = await _context.Agenda
+            var agenda = await _context.Agenda.Include(m => m.Medico).Include(p => p.Paciente)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (agenda == null)
             {
