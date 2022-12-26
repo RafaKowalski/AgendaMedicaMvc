@@ -54,7 +54,7 @@ namespace AgendaMedicaMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Email,Phone")] Paciente paciente)
+        public async Task<IActionResult> Create([Bind("Id,Name,Email,Phone,Observacao")] Paciente paciente)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace AgendaMedicaMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Email,Phone")] Paciente paciente)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Email,Phone,Observacao")] Paciente paciente)
         {
             if (id != paciente.Id)
             {
