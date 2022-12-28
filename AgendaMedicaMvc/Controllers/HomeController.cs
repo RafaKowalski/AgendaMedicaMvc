@@ -15,13 +15,6 @@ namespace AgendaMedicaMvc.Controllers
             return View();
         }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "About me";
-
-            return View();
-        }
-
         public IActionResult Contact()
         {
             ViewData["Message"] = "Contacts ";
