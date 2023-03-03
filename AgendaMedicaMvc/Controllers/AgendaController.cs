@@ -43,7 +43,7 @@ namespace AgendaMedicaMvc.Controllers
                 return NotFound();
             }
 
-            var agenda = _agendaService.GetAgendaById(id);
+            var agenda = await _agendaService.GetAgendaById(id);
             if (agenda == null)
             {
                 return NotFound();

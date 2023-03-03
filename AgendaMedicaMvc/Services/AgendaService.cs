@@ -22,9 +22,9 @@ namespace AgendaMedicaMvc.Services
             return _context.Agenda.Include(x => x.Medico).Include(x => x.Paciente).OrderBy(x => x.Date).ToListAsync();
         }
 
-        public Agenda GetAgendaById(int? id)
+        public async Task<Agenda> GetAgendaById(int? id)
         {
-            return _context.Agenda.Include(m => m.Medico).Include(p => p.Paciente).FirstOrDefault(x => x.Id == id);
+            return await _context.Agenda.Include(m => m.Medico).Include(p => p.Paciente).FirstOrDefaultAsync(x => x.Id == id);
         }
         public async Task<Agenda> InsertAgendaAsync(Agenda objAgenda)
         {
