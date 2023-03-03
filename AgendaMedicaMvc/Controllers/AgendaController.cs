@@ -71,8 +71,7 @@ namespace AgendaMedicaMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(agenda);
-                await _context.SaveChangesAsync();
+                await _agendaService.InsertAgendaAsync(agenda);
                 return RedirectToAction(nameof(Index));
             }
             return View(agenda);

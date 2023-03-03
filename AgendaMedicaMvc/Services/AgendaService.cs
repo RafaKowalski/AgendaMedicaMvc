@@ -21,10 +21,12 @@ namespace AgendaMedicaMvc.Services
         {
             return _context.Agenda.Include(x => x.Medico).Include(x => x.Paciente).OrderBy(x => x.Date).ToListAsync();
         }
-        public void InsertAgendaAsync(Agenda objAgenda)
+        public async Task<Agenda> InsertAgendaAsync(Agenda objAgenda)
         {
             _context.Add(objAgenda);
             _context.SaveChangesAsync();
+
+            return objAgenda;
         }
 
     }
