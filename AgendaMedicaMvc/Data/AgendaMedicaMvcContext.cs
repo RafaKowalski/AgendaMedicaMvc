@@ -9,7 +9,7 @@ namespace AgendaMedicaMvc.Data
 {
     public class AgendaMedicaMvcContext : DbContext
     {
-        public AgendaMedicaMvcContext (DbContextOptions<AgendaMedicaMvcContext> options)
+        public AgendaMedicaMvcContext(DbContextOptions<AgendaMedicaMvcContext> options)
             : base(options)
         {
         }
@@ -19,5 +19,7 @@ namespace AgendaMedicaMvc.Data
         public DbSet<Paciente> Paciente { get; set; }
 
         public DbSet<Agenda> Agenda { get; set; }
+
+        public DbSet<RegistroDeAgenda> RegistroDeAgenda { get; set; }
     }
 }

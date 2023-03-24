@@ -44,6 +44,7 @@ namespace AgendaMedicaMvc
             services.AddScoped<AgendaService>();
             services.AddScoped<MedicoService>();
             services.AddScoped<PacienteService>();
+            services.AddScoped<RegistroDeAgendaService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
