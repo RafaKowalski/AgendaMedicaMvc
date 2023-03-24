@@ -29,7 +29,7 @@ namespace AgendaMedicaMvc.Services
         public async Task<Agenda> InsertAgendaAsync(Agenda objAgenda)
         {
             _context.Add(objAgenda);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return objAgenda;
         }

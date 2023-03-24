@@ -19,10 +19,10 @@ namespace AgendaMedicaMvc.Services
         {
             return _context.Paciente.OrderBy(x => x.Name).ToList();
         }
-        public void InsertPacienteAsync(Paciente objPaciente)
+        public async Task InsertPacienteAsync(Paciente objPaciente)
         {
             _context.Add(objPaciente);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
