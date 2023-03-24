@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AgendaMedicaMvc.Data;
 using AgendaMedicaMvc.Models;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 
 namespace AgendaMedicaMvc.Controllers
 {
@@ -60,6 +61,10 @@ namespace AgendaMedicaMvc.Controllers
             {
                 _context.Add(paciente);
                 await _context.SaveChangesAsync();
+
+                if (paciente.Name == "Alikan")
+                    ModelState.AddModelError("", "testando");
+
                 return RedirectToAction(nameof(Index));
             }
             return View(paciente);
