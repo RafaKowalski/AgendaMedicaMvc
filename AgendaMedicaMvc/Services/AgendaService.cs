@@ -11,6 +11,7 @@ namespace AgendaMedicaMvc.Services
     public class AgendaService
     {
         private readonly AgendaMedicaMvcContext _context;
+        private readonly Agenda _agenda;
 
         public AgendaService(AgendaMedicaMvcContext context)
         {
@@ -19,7 +20,7 @@ namespace AgendaMedicaMvc.Services
 
         public Task<List<Agenda>> FindAllAgenda()
         {
-            return _context.Agenda.Include(x => x.Medico).Include(x => x.Paciente).OrderBy(x => x.Date).ToListAsync();
+            return _context.Agenda.Include(x => x.Medico).Include(x => x.Paciente).Where(x => x.Date >= DateTime.Today).OrderBy(x => x.Date).ToListAsync();
         }
 
         public async Task<Agenda> GetAgendaById(int? id)

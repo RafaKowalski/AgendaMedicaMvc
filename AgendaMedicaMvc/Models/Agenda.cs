@@ -27,5 +27,10 @@ namespace AgendaMedicaMvc.Models
             Medico = medico;
             Paciente = paciente;
         }
+
+        public Agenda(DateTime date)
+        {
+            Date = date;
+        }
     }
 }
