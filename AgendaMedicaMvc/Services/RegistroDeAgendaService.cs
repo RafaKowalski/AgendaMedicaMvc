@@ -18,7 +18,7 @@ namespace AgendaMedicaMvc.Services
 
         public async Task<List<RegistroDeAgenda>> FindAllAsync()
         {
-            return await _context.RegistroDeAgenda.Include(a => a.Agenda).OrderBy(x => x.Agenda.Date).ToListAsync();
+            return await _context.RegistroDeAgenda.Include(a => a.Agenda.Medico).OrderBy(x => x.Agenda.Date).ToListAsync();
         }
 
         public async Task<RegistroDeAgenda> InsertRegistroAsync(RegistroDeAgenda registroDeAgenda)

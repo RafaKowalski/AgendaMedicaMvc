@@ -18,9 +18,9 @@ namespace AgendaMedicaMvc.Services
             _context = context;
         }
 
-        public Task<List<Agenda>> FindAllAgenda()
+        public async Task<List<Agenda>> FindAllAgenda()
         {
-            return _context.Agenda.Include(x => x.Medico).Include(x => x.Paciente).Where(x => x.Date >= DateTime.Today).OrderBy(x => x.Date).ToListAsync();
+            return await _context.Agenda.Include(x => x.Medico).Include(x => x.Paciente).Where(x => x.Date >= DateTime.Today).OrderBy(x => x.Date).ToListAsync();
         }
 
         public async Task<Agenda> GetAgendaById(int? id)
@@ -29,6 +29,11 @@ namespace AgendaMedicaMvc.Services
         }
         public async Task<Agenda> InsertAgendaAsync(Agenda objAgenda)
         {
+            if (objAgenda.Date < DateTime.Today)
+            {
+                throw new Exception("a data não pode ser menor do que a atual");
+            }
+
             _context.Add(objAgenda);
             await _context.SaveChangesAsync();
 
