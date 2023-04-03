@@ -17,7 +17,7 @@ namespace AgendaMedicaMvc.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Contacts ";
+            ViewData["Message"] = "Contatos ";
             ViewData["Name"] = "Rafael Kowalski";
             ViewData["Email"] = "rafaelmk06@gmail.com";
 
