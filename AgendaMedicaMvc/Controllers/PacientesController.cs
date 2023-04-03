@@ -8,22 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using AgendaMedicaMvc.Data;
 using AgendaMedicaMvc.Models;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
+using AgendaMedicaMvc.Services;
 
 namespace AgendaMedicaMvc.Controllers
 {
     public class PacientesController : Controller
     {
         private readonly AgendaMedicaMvcContext _context;
+        private readonly PacienteService _pacienteService;
 
-        public PacientesController(AgendaMedicaMvcContext context)
+        public PacientesController(AgendaMedicaMvcContext context, PacienteService pacienteService)
         {
             _context = context;
+            _pacienteService = pacienteService;
         }
 
         // GET: Pacientes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Paciente.ToListAsync());
+            return View(await _pacienteService.FindAllPacienteAsync());
         }
 
         // GET: Pacientes/Details/5
@@ -59,11 +62,7 @@ namespace AgendaMedicaMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(paciente);
-                await _context.SaveChangesAsync();
-
-                if (paciente.Name == "Alikan")
-                    ModelState.AddModelError("", "testando");
+                await _pacienteService.InsertPacienteAsync(paciente);
 
                 return RedirectToAction(nameof(Index));
             }
