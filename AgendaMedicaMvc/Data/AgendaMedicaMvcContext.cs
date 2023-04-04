@@ -19,7 +19,5 @@ namespace AgendaMedicaMvc.Data
         public DbSet<Paciente> Paciente { get; set; }
 
         public DbSet<Agenda> Agenda { get; set; }
-
-        public DbSet<RegistroDeAgenda> RegistroDeAgenda { get; set; }
     }
 }
