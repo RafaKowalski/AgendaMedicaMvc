@@ -84,12 +84,17 @@ namespace AgendaMedicaMvc.Controllers
                 return NotFound();
             }
 
-            var agenda = await _context.Agenda.FindAsync(id);
+            var agenda = await _agendaService.GetAgendaById(id.Value);
             if (agenda == null)
             {
                 return NotFound();
             }
-            return View(agenda);
+
+            List<Medico> Medicos = _medicoService.FindAllMedico();
+            List<Paciente> Pacientes = await _pacienteService.FindAllPacienteAsync();
+            var viewModel = new AgendaViewModel(agenda, Medicos, Pacientes);
+
+            return View(viewModel);
         }
 
         // POST: Agenda/Edit/5
@@ -97,7 +102,7 @@ namespace AgendaMedicaMvc.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,StatusDaAgenda")] Agenda agenda)
+        public async Task<IActionResult> Edit(int id, Agenda agenda)
         {
             if (id != agenda.Id)
             {
@@ -124,7 +129,11 @@ namespace AgendaMedicaMvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(agenda);
+            List<Medico> Medicos = _medicoService.FindAllMedico();
+            List<Paciente> Pacientes = await _pacienteService.FindAllPacienteAsync();
+            var viewModel = new AgendaViewModel(agenda, Medicos, Pacientes);
+
+            return View(viewModel);
         }
 
         // GET: Agenda/Delete/5

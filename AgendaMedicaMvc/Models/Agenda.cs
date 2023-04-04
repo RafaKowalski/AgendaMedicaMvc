@@ -12,7 +12,8 @@ namespace AgendaMedicaMvc.Models
         public DateTime Date { get; set; }
         public Medico Medico { get; set; }
         public Paciente Paciente { get; set; }
-        //public StatusDaAgenda StatusDaAgenda { get; set; }
+        [Display(Name = "Status")]
+        public StatusDaAgenda StatusDaAgenda { get; set; }
         public int MedicoId { get; set; }
         public int PacienteId { get; set; }
 
