@@ -10,16 +10,18 @@ namespace AgendaMedicaMvc.Models
         public string Name { get; set; }
         [Display(Name = "Especialização")]
         public string Specialization { get; set; }
+        public string Crm { get; set; }
 
         public Medico()
         {
         }
 
-        public Medico(int id, string name, string specialization)
+        public Medico(int id, string name, string specialization, string crm)
         {
             Id = id;
             Name = name;
             Specialization = specialization;
+            Crm = crm;
         }
     }
 }
