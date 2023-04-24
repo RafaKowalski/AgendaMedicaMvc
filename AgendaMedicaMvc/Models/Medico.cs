@@ -10,6 +10,7 @@ namespace AgendaMedicaMvc.Models
         public string Name { get; set; }
         [Display(Name = "Especialização")]
         public string Specialization { get; set; }
+        [Required(ErrorMessage = "campo obrigatório")]
         public string Crm { get; set; }
 
         public Medico()
