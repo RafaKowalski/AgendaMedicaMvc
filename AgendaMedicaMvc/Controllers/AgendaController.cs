@@ -30,9 +30,7 @@ namespace AgendaMedicaMvc.Controllers
         // GET: Agenda
         public async Task<IActionResult> Index()
         {
-            var result = await _agendaService.FindAllAgenda();
-
-            return View(result);
+            return View(await _agendaService.FindAllAgenda());
         }
 
         // GET: Agenda/Details/5
