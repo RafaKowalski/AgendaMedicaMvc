@@ -53,7 +53,7 @@ namespace AgendaMedicaMvc.Controllers
         // GET: Agenda/Create
         public async Task<IActionResult> Create()
         {
-            List<Medico> Medicos = _medicoService.FindAllMedico();
+            List<Medico> Medicos = await _medicoService.FindAllMedico();
             List<Paciente> Pacientes = await _pacienteService.FindAllPacienteAsync();
             var viewModel = new AgendaViewModel(Medicos, Pacientes);
             return View(viewModel);
@@ -88,7 +88,7 @@ namespace AgendaMedicaMvc.Controllers
                 return NotFound();
             }
 
-            List<Medico> Medicos = _medicoService.FindAllMedico();
+            List<Medico> Medicos = await _medicoService.FindAllMedico();
             List<Paciente> Pacientes = await _pacienteService.FindAllPacienteAsync();
             var viewModel = new AgendaViewModel(agenda, Medicos, Pacientes);
 
@@ -127,7 +127,7 @@ namespace AgendaMedicaMvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            List<Medico> Medicos = _medicoService.FindAllMedico();
+            List<Medico> Medicos = await _medicoService.FindAllMedico();
             List<Paciente> Pacientes = await _pacienteService.FindAllPacienteAsync();
             var viewModel = new AgendaViewModel(agenda, Medicos, Pacientes);
 

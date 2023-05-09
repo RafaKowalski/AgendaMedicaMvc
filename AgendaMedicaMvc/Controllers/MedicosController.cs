@@ -7,22 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AgendaMedicaMvc.Data;
 using AgendaMedicaMvc.Models;
+using AgendaMedicaMvc.Services;
 
 namespace AgendaMedicaMvc.Controllers
 {
     public class MedicosController : Controller
     {
         private readonly AgendaMedicaMvcContext _context;
+        private readonly MedicoService _medicoService;
 
-        public MedicosController(AgendaMedicaMvcContext context)
+        public MedicosController(AgendaMedicaMvcContext context, MedicoService medicoService)
         {
             _context = context;
+            _medicoService = medicoService;
         }
 
         // GET: Medicos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Medico.ToListAsync());
+            return View(await _medicoService.FindAllMedico());
         }
 
         // GET: Medicos/Details/5
@@ -33,8 +36,7 @@ namespace AgendaMedicaMvc.Controllers
                 return NotFound();
             }
 
-            var medico = await _context.Medico
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var medico = await _medicoService.FindMedicoById(id);
             if (medico == null)
             {
                 return NotFound();
@@ -58,8 +60,7 @@ namespace AgendaMedicaMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(medico);
-                await _context.SaveChangesAsync();
+                await _medicoService.InsertMedicoAsync(medico);
                 return RedirectToAction(nameof(Index));
             }
             return View(medico);
@@ -73,7 +74,7 @@ namespace AgendaMedicaMvc.Controllers
                 return NotFound();
             }
 
-            var medico = await _context.Medico.FindAsync(id);
+            var medico = await _medicoService.FindMedicoById(id);
             if (medico == null)
             {
                 return NotFound();
@@ -97,8 +98,7 @@ namespace AgendaMedicaMvc.Controllers
             {
                 try
                 {
-                    _context.Update(medico);
-                    await _context.SaveChangesAsync();
+                    await _medicoService.EditMedico(medico);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -124,8 +124,7 @@ namespace AgendaMedicaMvc.Controllers
                 return NotFound();
             }
 
-            var medico = await _context.Medico
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var medico = await _medicoService.FindMedicoById(id);
             if (medico == null)
             {
                 return NotFound();
@@ -140,8 +139,7 @@ namespace AgendaMedicaMvc.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var medico = await _context.Medico.FindAsync(id);
-            _context.Medico.Remove(medico);
-            await _context.SaveChangesAsync();
+            await _medicoService.DeleteMedico(medico);
             return RedirectToAction(nameof(Index));
         }
 

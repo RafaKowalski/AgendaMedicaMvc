@@ -16,13 +16,35 @@ namespace AgendaMedicaMvc.Services
             _context = context;
         }
 
-        public List<Medico> FindAllMedico()
+        public async Task<List<Medico>> FindAllMedico()
         {
-            return _context.Medico.OrderBy(x => x.Name).ToList();
+            return await _context.Medico.OrderBy(x => x.Name).ToListAsync();
         }
-        public async Task InsertMedicoAsync(Medico objMedico)
+
+        public async Task<Medico> FindMedicoById(int? id)
+        {
+            return await _context.Medico.FirstOrDefaultAsync(m => m.Id == id);
+        }
+
+        public async Task<Medico> InsertMedicoAsync(Medico objMedico)
         {
             _context.Add(objMedico);
+            await _context.SaveChangesAsync();
+
+            return objMedico;
+        }
+
+        public async Task<Medico> EditMedico(Medico medico)
+        {
+            _context.Update(medico);
+            await _context.SaveChangesAsync();
+
+            return medico;
+        }
+
+        public async Task DeleteMedico(Medico medico)
+        {
+            _context.Medico.Remove(medico);
             await _context.SaveChangesAsync();
         }
     }
