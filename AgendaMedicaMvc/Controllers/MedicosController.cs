@@ -138,7 +138,7 @@ namespace AgendaMedicaMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var medico = await _context.Medico.FindAsync(id);
+            var medico = await _medicoService.FindMedicoById(id);
             await _medicoService.DeleteMedico(medico);
             return RedirectToAction(nameof(Index));
         }

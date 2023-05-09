@@ -37,8 +37,7 @@ namespace AgendaMedicaMvc.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Paciente
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var paciente = await _pacienteService.FindPacienteById(id);
             if (paciente == null)
             {
                 return NotFound();
@@ -77,7 +76,7 @@ namespace AgendaMedicaMvc.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Paciente.FindAsync(id);
+            var paciente = await _pacienteService.FindPacienteById(id);
             if (paciente == null)
             {
                 return NotFound();
@@ -101,8 +100,7 @@ namespace AgendaMedicaMvc.Controllers
             {
                 try
                 {
-                    _context.Update(paciente);
-                    await _context.SaveChangesAsync();
+                    await _pacienteService.EditPaciente(paciente);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -128,8 +126,7 @@ namespace AgendaMedicaMvc.Controllers
                 return NotFound();
             }
 
-            var paciente = await _context.Paciente
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var paciente = await _pacienteService?.FindPacienteById(id);
             if (paciente == null)
             {
                 return NotFound();
@@ -143,9 +140,8 @@ namespace AgendaMedicaMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var paciente = await _context.Paciente.FindAsync(id);
-            _context.Paciente.Remove(paciente);
-            await _context.SaveChangesAsync();
+            var paciente = await _pacienteService.FindPacienteById(id);
+            await _pacienteService.DeletePaciente(paciente);
             return RedirectToAction(nameof(Index));
         }
 
