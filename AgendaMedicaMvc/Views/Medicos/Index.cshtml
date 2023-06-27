@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AgendaMedicaMvc.Models.Medico>
+﻿@model AgendaMedicaMvc.Models.Medico
 
 @{
     ViewData["Title"] = "Index";
@@ -25,23 +25,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Specialization)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Crm)
-            </td>
-            <td>
-              <a asp-action="Edit" class="btn btn-info" asp-route-id="@item.Id">Edit</a>
-              <a asp-action="Details" class="btn btn-info"asp-route-id="@item.Id">Details</a>
-              <a asp-action="Delete" class="btn btn-info" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        <td>
+            @Html.DisplayFor(Model => Model.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => Model.Specialization)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => Model.Crm)
+        </td>
     </tbody>
+
+    @*@foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Specialization)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Crm)
+                    </td>
+                    <td>
+                      <a asp-action="Edit" class="btn btn-info" asp-route-id="@item.Id">Edit</a>
+                      <a asp-action="Details" class="btn btn-info"asp-route-id="@item.Id">Details</a>
+                      <a asp-action="Delete" class="btn btn-info" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+        }*@
 </table>

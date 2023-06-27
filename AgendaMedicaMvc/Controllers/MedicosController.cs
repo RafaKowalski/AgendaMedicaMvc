@@ -25,7 +25,15 @@ namespace AgendaMedicaMvc.Controllers
         // GET: Medicos
         public async Task<IActionResult> Index()
         {
-            return View(await _medicoService.FindAllMedico());
+            Medico medico = new Medico
+            {
+                Name = "rafa",
+                Specialization = "Neuro",
+                Crm = "6666666666",
+            };
+
+            return View(medico);
+            //return View(await _medicoService.FindAllMedico());
         }
 
         // GET: Medicos/Details/5
