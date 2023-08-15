@@ -1,9 +1,15 @@
-﻿namespace AgendaMedicaMvc.Models.Enums
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace AgendaMedicaMvc.Models.Enums
 {
-    public enum StatusDaAgenda : int
+    public enum StatusDaAgenda
     {
-        AgendaConfirmada = 1,
-        AgendaConcluida = 2,
-        AgendaCancelada = 3,
+        [Display(Name = "Agenda Confirmada")]
+        AgendaConfirmada,
+        [Display(Name = "Agenda Concluída")]
+        AgendaConcluida,
+        [Display(Name = "Agenda Cancelada")]
+        AgendaCancelada
     }
 }

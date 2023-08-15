@@ -1,4 +1,5 @@
 ﻿@using AgendaMedicaMvc.Models.Enums;
+@using AgendaMedicaMvc.Models;
 @model AgendaMedicaMvc.Models.ViewModels.AgendaViewModel
 
 @{
@@ -27,7 +28,12 @@
                 <select asp-for="Agenda.PacienteId" asp-items="@(new SelectList(Model.Pacientes,"Id","Name"))" class="form-control"></select>
             </div>
             <div>
-                <select asp-for="Agenda.StatusDaAgenda" asp-items="Html.GetEnumSelectList<StatusDaAgenda>()"></select>
+                <label asp-for="Agenda.StatusDaAgenda" class="control-label"></label>
+                <select asp-for="Agenda.StatusDaAgenda" class="form-control">
+                    <option value="@StatusDaAgenda.AgendaConfirmada">Agenda Confirmada</option>
+                    <option value="@StatusDaAgenda.AgendaCancelada">AgendaCancelada</option>
+                    <option value="@StatusDaAgenda.AgendaConcluida">AgendaConcluida</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
